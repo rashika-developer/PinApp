@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PinApp</string>
+    <string name="pin_title">Beautiful Mountain Sunset</string>
+    <string name="pin_description">
+        A breathtaking view of the Rocky Mountains at golden hour.
+        Perfect for your travel inspiration board.
+    </string>
+    <string name="btn_save">Save Pin</string>
+    <string name="btn_share">Share Pin</string>
+    <string name="img_placeholder_desc">Pin image placeholder</string>
 </resources>
