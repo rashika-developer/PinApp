@@ -1,80 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="#FFFFFF">
 
-    <!--    IMAGE PLACE HOLDER-->
-    <ImageView
-        android:id="@+id/ivPinImage"
-        android:layout_width="0dp"
-        android:layout_height="240dp"
-        android:background="#E0E0E0"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/img_placeholder_desc"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_alignParentBottom="true"
-        />
-    <!-- PIN TITLE-->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/pin_title"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#1A1A2E"
-        app:layout_constraintTop_toBottomOf="@+id/ivPinImage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <!--DISCRIPTION-->
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/pin_description"
-        android:textSize="15sp"
-        android:textColor="#555555"
-        android:lineSpacingMultiplier="1.4"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <!-- SAVE BUTTON-->
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="0dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/btn_save"
-        android:textSize="15sp"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#1565C0"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnShare" />
+        android:padding="16dp">
 
-    <!--SHARE BUTTON-->
-    <Button
-        android:id="@+id/btnShare"
-        android:layout_width="0dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/btn_share"
-        android:textSize="15sp"
-        android:textColor="#1565C0"
-        android:backgroundTint="#E3F2FD"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        app:layout_constraintStart_toEndOf="@+id/btnSave"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Title field with error support -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTitle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Description field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/hint_description"
+            app:layout_constraintTop_toBottomOf="@id/tilTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:maxLines="5" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Category Spinner -->
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:entries="@array/pin_categories"
+            android:padding="12dp"
+            android:background="@drawable/spinner_border"
+            app:layout_constraintTop_toBottomOf="@id/tilDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Error text for Spinner (shown programmatically) -->
+        <TextView
+            android:id="@+id/tvCategoryError"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#B00020"
+            android:textSize="12sp"
+            android:paddingStart="12dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/spinnerCategory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Create button -->
+        <Button
+            android:id="@+id/btnCreate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/btn_create"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tvCategoryError"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

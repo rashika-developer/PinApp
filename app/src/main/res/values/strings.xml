@@ -1,11 +1,24 @@
+<!--res/values/strings.xml-->
 <resources>
     <string name="app_name">PinApp</string>
-    <string name="pin_title">Beautiful Mountain Sunset</string>
-    <string name="pin_description">
-        A breathtaking view of the Rocky Mountains at golden hour.
-        Perfect for your travel inspiration board.
-    </string>
-    <string name="btn_save">Save Pin</string>
-    <string name="btn_share">Share Pin</string>
-    <string name="img_placeholder_desc">Pin image placeholder</string>
+    <string name="hint_title">Pin title</string>
+    <string name="hint_description">Describe your pin</string>
+    <string name="hint_category">Select category</string>
+    <string name="btn_create">Create Pin</string>
+    <string name="error_empty_title">Title is required</string>
+    <string name="error_empty_description">Description is required</string>
+    <string name="error_no_category">Please select a category</string>
+    <string name="toast_pin_created">Pin created!</string>
+
+
+    <!--Spinner entries-->
+    <string-array name="pin_categories">
+        <item>Select Category</item>
+        <item>Travel</item>
+        <item>Food</item>
+        <item>Fashion</item>
+        <item>Architecture</item>
+        <item>Nature</item>
+    </string-array>
+
 </resources>
