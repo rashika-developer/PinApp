@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.content.Intent;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -62,12 +63,17 @@ public class MainActivity extends AppCompatActivity {
             tvCategoryError.setVisibility(View.GONE);
         }
 
+        // Inside MainActivity.validateAndCreate() — replace the TODO with this:
+
         if (valid) {
             String category = spinnerCategory.getSelectedItem().toString();
-            Toast.makeText(this,
-                    getString(R.string.toast_pin_created) + " [" + category + "]",
-                    Toast.LENGTH_SHORT).show();
-            // TODO Day 5: pass data to PinPreviewActivity via Intent
+
+            Intent intent = new Intent(this, PinPreviewActivity.class);
+            intent.putExtra(PinPreviewActivity.KEY_TITLE,       title);
+            intent.putExtra(PinPreviewActivity.KEY_DESCRIPTION, desc);
+            intent.putExtra(PinPreviewActivity.KEY_CATEGORY,    category);
+            startActivity(intent);
         }
+
     }
 }
